@@ -97,12 +97,26 @@
     </div>
   </div>
 
+  <div class="program-card">
+    <div class="program-name">4. youtube downloader</div>
+    <div class="btn-group">
+      <a href="https://is.gd/ytvideo24" class="btn" download>Скачать</a>
+      <button class="btn" onclick="copyCustomLink('https://is.gd/ytvideo24')">Копировать</button>
+    </div>
+  </div>
+
   <script>
     function copyLink(fileName) {
       const baseUrl = "https://progi24.netlify.app/";
       const fullUrl = baseUrl + fileName;
       navigator.clipboard.writeText(fullUrl).then(() => {
         alert("Ссылка скопирована: " + fullUrl);
+      });
+    }
+
+    function copyCustomLink(url) {
+      navigator.clipboard.writeText(url).then(() => {
+        alert("Ссылка скопирована: " + url);
       });
     }
   </script>
