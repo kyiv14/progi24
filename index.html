@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Мои программы</title>
+  <style>
+    body {
+      background: #f3f4f6;
+      font-family: "Segoe UI", sans-serif;
+      color: #111827;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      margin: 0;
+    }
+    h1 {
+      font-size: 8vw;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .program-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 20px;
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .program-name {
+      font-size: 6vw;
+      margin-bottom: 16px;
+    }
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 10px 16px;
+      border: none;
+      border-radius: 8px;
+      background-color: #3b82f6;
+      color: white;
+      font-size: 4.5vw;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      flex: 1 1 auto;
+      min-width: 120px;
+      max-width: 45%;
+    }
+    .btn:hover {
+      background-color: #2563eb;
+    }
+
+    @media (min-width: 480px) {
+      h1 {
+        font-size: 32px;
+      }
+      .program-name {
+        font-size: 24px;
+      }
+      .btn {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>МОИ ПРОГРАММЫ</h1>
+
+  <div class="program-card">
+    <div class="program-name">1. HDRezka</div>
+    <div class="btn-group">
+      <a href="https://progi24.netlify.app/hdrezka.apk" class="btn" download>Скачать</a>
+      <button class="btn" onclick="copyLink('hdrezka.apk')">Копировать</button>
+    </div>
+  </div>
+
+  <div class="program-card">
+    <div class="program-name">2. IPTV Pro</div>
+    <div class="btn-group">
+      <a href="https://progi24.netlify.app/iptvpro.apk" class="btn" download>Скачать</a>
+      <button class="btn" onclick="copyLink('iptvpro.apk')">Копировать</button>
+    </div>
+  </div>
+
+  <div class="program-card">
+    <div class="program-name">3. LazyMedia Deluxe</div>
+    <div class="btn-group">
+      <a href="https://progi24.netlify.app/lazymediadeluxe.apk" class="btn" download>Скачать</a>
+      <button class="btn" onclick="copyLink('lazymediadeluxe.apk')">Копировать</button>
+    </div>
+  </div>
+
+  <script>
+    function copyLink(fileName) {
+      const baseUrl = "https://progi24.netlify.app/";
+      const fullUrl = baseUrl + fileName;
+      navigator.clipboard.writeText(fullUrl).then(() => {
+        alert("Ссылка скопирована: " + fullUrl);
+      });
+    }
+  </script>
+</body>
+</html>
