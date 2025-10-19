@@ -73,8 +73,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        /* ИСПРАВЛЕНИЕ: Установка стабильного размера шрифта для предотвращения возможного искажения */
-        font-size: clamp(20px, 6vw, 30px); 
+        font-size: 4.5vw;
         color: white;
         font-weight: bold;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -172,8 +171,9 @@
       .program-name {
         font-size: 18px;
       }
-      /* УДАЛЕНИЕ: Убран дублирующий font-size для app-icon, чтобы избежать конфликта */
-      /* .app-icon { font-size: 24px; } */
+      .app-icon {
+        font-size: 24px;
+      }
       .btn-group {
         gap: 10.4px;
       }
