@@ -4,119 +4,260 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Мои программы</title>
+  
+  <link rel="icon" href="https://progi24.vercel.app/icon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="https://progi24.vercel.app/icon.ico" type="image/x-icon">
+  
   <style>
+    /* Стиль: Минимализм, квадратные карточки, 2 КОЛОНКИ ПО УМОЛЧАНИЮ */
     body {
-      background: #f3f4f6;
-      font-family: "Segoe UI", sans-serif;
-      color: #111827;
+      background: #f5f5f7;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      color: #1d1d1f;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 20px;
+      padding: 26px 13px;
       margin: 0;
     }
+    
+    /* Заголовок страницы */
     h1 {
-      font-size: 8vw;
+      font-size: clamp(24px, 8vw, 38px);
       text-align: center;
-      margin-bottom: 30px;
-    }
-    .program-card {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      padding: 20px;
-      width: 100%;
-      max-width: 420px;
-      text-align: center;
-      margin-bottom: 24px;
-    }
-    .program-name {
-      font-size: 6vw;
-      margin-bottom: 16px;
-    }
-    .btn-group {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-    .btn {
-      padding: 10px 16px;
-      border: none;
-      border-radius: 8px;
-      background-color: #3b82f6;
-      color: white;
-      font-size: 4.5vw;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      flex: 1 1 auto;
-      min-width: 120px;
-      max-width: 45%;
-    }
-    .btn:hover {
-      background-color: #2563eb;
+      margin-bottom: 39px;
+      color: #1d1d1f;
+      font-weight: 600;
+      letter-spacing: -0.5px;
     }
 
-    @media (min-width: 480px) {
-      h1 {
-        font-size: 32px;
+    /* Контейнер для адаптивной сетки */
+    .programs-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 13px;
+        width: 100%;
+        max-width: 900px;
+        padding: 0;
+    }
+
+    /* Карточка программы */
+    .program-card {
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); 
+      padding: 13px; 
+      text-align: center;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      
+      aspect-ratio: 1 / 1; 
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between; 
+      align-items: center;
+      touch-action: manipulation; 
+    }
+
+    .program-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+    
+    /* Иконка в стиле App Store */
+    .app-icon {
+        width: 35%;
+        aspect-ratio: 1 / 1;
+        background-color: #dc2625;
+        border-radius: 20%;
+        margin-bottom: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 4.5vw;
+        color: white;
+        font-weight: bold;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Название программы: УМЕНЬШЕННЫЙ ШРИФТ */
+    .program-name {
+      flex-grow: 1; 
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      
+      font-size: clamp(13px, 3vw, 16px); 
+      color: #1d1d1f;
+      font-weight: 600;
+      line-height: 1.2;
+      padding-bottom: 8px; 
+    }
+
+    /* Контейнер для кнопок */
+    .btn-group {
+      display: flex;
+      flex-direction: column; 
+      gap: 6.5px;
+      width: 100%; 
+    }
+
+    /* Стиль кнопки - Основной красный цвет */
+    .btn {
+      padding: 8px 13px;
+      border: 1px solid #dc2625; 
+      border-radius: 6px; 
+      background-color: #dc2625; 
+      color: white;
+      font-size: clamp(12px, 3vw, 14px); 
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.2s, opacity 0.2s;
+      width: 100%; 
+      box-shadow: 0 1px 3px rgba(220, 38, 37, 0.3); 
+      box-sizing: border-box; 
+    }
+    
+    /* Стиль кнопки - Вторичный (Копировать) */
+    .btn.secondary {
+        background-color: transparent;
+        color: #dc2625;
+        box-shadow: none;
+        border-color: #dc2625;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+      background-color: #b91c1c; 
+    }
+    
+    .btn.secondary:hover {
+        background-color: #fee2e2; 
+        opacity: 1;
+    }
+
+    /* Стили для Toast-уведомления */
+    #toast-notification {
+        visibility: hidden;
+        min-width: 250px;
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        border-radius: 8px;
+        padding: 16px;
+        position: fixed;
+        z-index: 1;
+        left: 50%;
+        bottom: 30px; /* Расположение снизу */
+        transform: translateX(-50%);
+        font-size: 16px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        opacity: 0;
+        transition: visibility 0s, opacity 0.5s linear;
+    }
+    
+    #toast-notification.show {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    /* Медиа-запросы для больших экранов */
+    @media (min-width: 500px) {
+      .program-card {
+         padding: 26px;
       }
       .program-name {
+        font-size: 18px;
+      }
+      .app-icon {
         font-size: 24px;
       }
-      .btn {
-        font-size: 16px;
+      .btn-group {
+        gap: 10.4px;
       }
+    }
+    @media (min-width: 900px) {
+        .programs-container {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+    @media (max-width: 380px) {
+        .programs-container {
+            grid-template-columns: 1fr;
+        }
     }
   </style>
 </head>
 <body>
-  <h1>МОИ ПРОГРАММЫ</h1>
+    <h1>МОИ ПРОГРАММЫ</h1>
 
-  <div class="program-card">
-    <div class="program-name">1. HDRezka</div>
-    <div class="btn-group">
-      <a href="https://progi24.netlify.app/hdrezka.apk" class="btn" download>Скачать</a>
-      <button class="btn" onclick="copyLink('hdrezka.apk')">Копировать</button>
-    </div>
-  </div>
+    <div class="programs-container">
+        <div class="program-card">
+            <div class="app-icon">HD</div>
+            <div class="program-name">1. HDRezka</div>
+            <div class="btn-group">
+                <a href="https://progi24.netlify.app/hdrezka.apk" class="btn" download>Скачать</a>
+                <button class="btn secondary" onclick="copyLink('hdrezka.apk')">Копировать</button>
+            </div>
+        </div>
 
-  <div class="program-card">
-    <div class="program-name">2. IPTV Pro</div>
-    <div class="btn-group">
-      <a href="https://progi24.netlify.app/iptvpro.apk" class="btn" download>Скачать</a>
-      <button class="btn" onclick="copyLink('iptvpro.apk')">Копировать</button>
-    </div>
-  </div>
+        <div class="program-card">
+            <div class="app-icon">TV</div>
+            <div class="program-name">2. IPTV Pro</div>
+            <div class="btn-group">
+                <a href="https://progi24.netlify.app/iptvpro.apk" class="btn" download>Скачать</a>
+                <button class="btn secondary" onclick="copyLink('iptvpro.apk')">Копировать</button>
+            </div>
+        </div>
 
-  <div class="program-card">
-    <div class="program-name">3. LazyMedia Deluxe</div>
-    <div class="btn-group">
-      <a href="https://progi24.netlify.app/lazymediadeluxe.apk" class="btn" download>Скачать</a>
-      <button class="btn" onclick="copyLink('lazymediadeluxe.apk')">Копировать</button>
-    </div>
-  </div>
+        <div class="program-card">
+            <div class="app-icon">LM</div>
+            <div class="program-name">3. LazyMedia Deluxe</div>
+            <div class="btn-group">
+                <a href="https://progi24.netlify.app/lazymediadeluxe.apk" class="btn" download>Скачать</a>
+                <button class="btn secondary" onclick="copyLink('lazymediadeluxe.apk')">Копировать</button>
+            </div>
+        </div>
 
-  <div class="program-card">
-    <div class="program-name">4. youtube downloader</div>
-    <div class="btn-group">
-      <a href="https://is.gd/ytvideo24" class="btn" download>Скачать</a>
-      <button class="btn" onclick="copyCustomLink('https://is.gd/ytvideo24')">Копировать</button>
+        <div class="program-card">
+            <div class="app-icon">YT</div>
+            <div class="program-name">4. youtube downloader</div>
+            <div class="btn-group">
+                <a href="https://is.gd/ytvideo24" class="btn" download>Скачать</a>
+                <button class="btn secondary" onclick="copyCustomLink('https://is.gd/ytvideo24')">Копировать</button>
+            </div>
+        </div>
     </div>
-  </div>
+    
+    <div id="toast-notification">
+        Ссылка скопирована!
+    </div>
 
   <script>
+    // Функция для отображения Toast-уведомления
+    function showToast() {
+      const toast = document.getElementById("toast-notification");
+      toast.className = "show";
+      setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000); // Скрыть через 3 секунды
+    }
+    
     function copyLink(fileName) {
       const baseUrl = "https://progi24.netlify.app/";
       const fullUrl = baseUrl + fileName;
       navigator.clipboard.writeText(fullUrl).then(() => {
-        alert("Ссылка скопирована: " + fullUrl);
+        showToast(); // Показать уведомление
+      }).catch(err => {
+        console.error('Не удалось скопировать текст: ', err);
       });
     }
 
     function copyCustomLink(url) {
       navigator.clipboard.writeText(url).then(() => {
-        alert("Ссылка скопирована: " + url);
+        showToast(); // Показать уведомление
+      }).catch(err => {
+        console.error('Не удалось скопировать текст: ', err);
       });
     }
   </script>
